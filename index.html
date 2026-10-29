@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SISEK GPS | Boletín Técnico: Telemetría y Baterías de Motocicleta</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Tipografías Industriales y Técnicas:
          - Space Grotesk: Para títulos técnicos, arquitectura visual y números de impacto
          - Plus Jakarta Sans: Para lectura técnica fluida, neutra y moderna
          - JetBrains Mono: Para telemetría, lecturas en mA/V, terminales y códigos de estado -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -50,11 +53,11 @@
             }
         }
     </script>
-    
+
     <style>
         /* Trama técnica milimétrica sobre escala de grises */
         .tech-grid {
-            background-image: 
+            background-image:
                 linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 32px 32px;
@@ -68,9 +71,19 @@
 
         /* Pulsos para estado del sistema */
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
         }
+
         .live-pulse {
             animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
@@ -79,20 +92,24 @@
         ::-webkit-scrollbar {
             width: 7px;
         }
+
         ::-webkit-scrollbar-track {
             background: #0c0d10;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #242832;
             border-radius: 3px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #383e4d;
         }
     </style>
 </head>
 
-<body class="bg-surface-base text-gray-200 font-sans antialiased selection:bg-sisek-cyan selection:text-surface-base tech-grid min-h-screen">
+<body
+    class="bg-surface-base text-gray-200 font-sans antialiased selection:bg-sisek-cyan selection:text-surface-base tech-grid min-h-screen">
 
     <!-- BARRA DE NAVEGACIÓN TÉCNICA / IDENTIDAD SISEK -->
     <header class="border-b border-surface-border bg-surface-base/90 backdrop-blur-md sticky top-0 z-50">
@@ -100,32 +117,37 @@
             <!-- Logotipo y Nombre SISEK -->
             <div class="flex items-center space-x-3">
                 <div class="relative flex items-center">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-tRAZBUN-QenhG7BcMLqyesKBRn7eKanId_5q7jLBEEtU-4c3fWV_J-LQ&s=10" 
-                         alt="Logo SISEK GPS" 
-                         class="h-10 w-10 sm:h-11 sm:w-11 object-contain rounded-lg border border-surface-border bg-surface-card p-1 shadow-sm">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-tRAZBUN-QenhG7BcMLqyesKBRn7eKanId_5q7jLBEEtU-4c3fWV_J-LQ&s=10"
+                        alt="Logo SISEK GPS"
+                        class="h-10 w-10 sm:h-11 sm:w-11 object-contain rounded-lg border border-surface-border bg-surface-card p-1 shadow-sm">
                     <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                        <span class="live-pulse absolute inline-flex h-full w-full rounded-full bg-sisek-cyan opacity-75"></span>
+                        <span
+                            class="live-pulse absolute inline-flex h-full w-full rounded-full bg-sisek-cyan opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-sisek-cyan"></span>
                     </span>
                 </div>
                 <div>
                     <div class="flex items-center space-x-2">
                         <span class="font-heading font-bold text-lg tracking-wider text-white">SISEK</span>
-                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-card text-sisek-cyan border border-sisek-cyan/30">GPS</span>
+                        <span
+                            class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-card text-sisek-cyan border border-sisek-cyan/30">GPS</span>
                     </div>
-                    <p class="text-[11px] font-mono text-sisek-steel tracking-tight uppercase">División de Telemetría Vehicular</p>
+                    <p class="text-[11px] font-mono text-sisek-steel tracking-tight uppercase">División de Telemetría
+                        Vehicular</p>
                 </div>
             </div>
 
             <!-- Indicadores de Estado y Referencia Documental -->
             <div class="flex items-center space-x-4">
-                <div class="hidden sm:flex items-center space-x-2 text-xs font-mono text-sisek-silver bg-surface-card px-3 py-1.5 rounded-md border border-surface-border">
+                <div
+                    class="hidden sm:flex items-center space-x-2 text-xs font-mono text-sisek-silver bg-surface-card px-3 py-1.5 rounded-md border border-surface-border">
                     <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
                     <span>DOC-ID: <span class="text-white font-semibold">TEC-MOTO-2026</span></span>
                     <span class="text-surface-borderLight">|</span>
                     <span class="text-sisek-steel">REV 3.2</span>
                 </div>
-                <a href="#calculadora" class="text-xs font-mono font-medium px-3.5 py-1.5 rounded bg-surface-card hover:bg-surface-cardHover text-sisek-cyan border border-surface-border hover:border-sisek-cyan/50 transition-colors">
+                <a href="#calculadora"
+                    class="text-xs font-mono font-medium px-3.5 py-1.5 rounded bg-surface-card hover:bg-surface-cardHover text-sisek-cyan border border-surface-border hover:border-sisek-cyan/50 transition-colors">
                     Simulador &darr;
                 </a>
             </div>
@@ -135,7 +157,8 @@
     <!-- HERO SECTION: ENCABEZADO TÉCNICO EDITORIAL -->
     <section class="relative pt-12 pb-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <!-- Badge de categoría superior -->
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-surface-card border border-surface-border text-xs font-mono text-sisek-silver mb-6">
+        <div
+            class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-surface-card border border-surface-border text-xs font-mono text-sisek-silver mb-6">
             <span class="w-1.5 h-1.5 rounded-full bg-sisek-cyan"></span>
             <span>INGENIERÍA ELÉCTRICA // COMPORTAMIENTO DE BATERÍAS</span>
         </div>
@@ -143,35 +166,46 @@
         <!-- Título y Bajada -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div class="lg:col-span-8">
-                <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]">
+                <h1
+                    class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]">
                     El Impacto del GPS en la <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-sisek-silver">
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-sisek-silver">
                         Batería de tu Motocicleta
                     </span>
                 </h1>
                 <p class="mt-5 text-base sm:text-lg text-sisek-silver leading-relaxed max-w-3xl">
-                    Análisis técnico del comportamiento electroquímico, consumo en reposo <span class="font-mono text-white text-sm bg-surface-card px-1.5 py-0.5 rounded border border-surface-border">12-18 mA</span> y consecuencias de la activación del relé de corte en acumuladores de baja capacidad.
+                    Análisis técnico del comportamiento electroquímico, consumo en reposo <span
+                        class="font-mono text-white text-sm bg-surface-card px-1.5 py-0.5 rounded border border-surface-border">12-18
+                        mA</span> y consecuencias de la activación del relé de corte en acumuladores de baja capacidad.
                 </p>
             </div>
 
             <!-- Widget Rápido: Ficha de Especificación Nominal -->
             <div class="lg:col-span-4 bg-surface-card border border-surface-border rounded-xl p-5 shadow-lg">
-                <div class="flex items-center justify-between text-xs font-mono text-sisek-steel border-b border-surface-border pb-2.5 mb-3">
-                    <span>TELEMETRY SNAPSHOT</span>
-                    <span class="text-sisek-cyan font-semibold">12V DC SYSTEM</span>
+                <div
+                    class="flex items-center justify-between text-xs font-mono text-sisek-steel border-b border-surface-border pb-2.5 mb-3">
+                    <span>RESUMEN</span>
+                    <span class="text-sisek-cyan font-semibold">Sistemas 12V DC</span>
                 </div>
                 <div class="space-y-3 font-mono text-xs">
                     <div class="flex justify-between items-center">
                         <span class="text-sisek-silver">Capacidad estándar moto:</span>
-                        <span class="text-white font-bold bg-surface-inset px-2 py-0.5 rounded border border-surface-border">5.0 - 7.0 Ah</span>
+                        <span
+                            class="text-white font-bold bg-surface-inset px-2 py-0.5 rounded border border-surface-border">5.0
+                            - 7.0 Ah</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sisek-silver">Consumo Modo Sleep:</span>
-                        <span class="text-sisek-cyan font-bold bg-surface-inset px-2 py-0.5 rounded border border-surface-border">~15 mA/h</span>
+                        <span
+                            class="text-sisek-cyan font-bold bg-surface-inset px-2 py-0.5 rounded border border-surface-border">~15
+                            mA/h</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sisek-silver">Consumo Bloqueo de Motor:</span>
-                        <span class="text-sisek-orange font-bold bg-surface-inset px-2 py-0.5 rounded border border-surface-border">150 - 200 mA/h</span>
+                        <span
+                            class="text-sisek-orange font-bold bg-surface-inset px-2 py-0.5 rounded border border-surface-border">150
+                            - 200 mA/h</span>
                     </div>
                 </div>
             </div>
@@ -181,19 +215,24 @@
     <!-- SECCIÓN INTERACTIVA: SIMULADOR DE AUTONOMÍA SISEK -->
     <section id="calculadora" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div class="bg-surface-subtle border border-surface-border rounded-2xl p-6 md:p-8 relative overflow-hidden">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-border pb-6 mb-6">
+            <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-border pb-6 mb-6">
                 <div>
                     <div class="flex items-center space-x-2">
                         <span class="h-2 w-2 rounded-full bg-sisek-cyan"></span>
-                        <h2 class="font-heading text-xl md:text-2xl font-bold text-white tracking-tight">Simulador Técnico de Autonomía de Batería</h2>
+                        <h2 class="font-heading text-xl md:text-2xl font-bold text-white tracking-tight">Simulador
+                            Técnico de Autonomía de Batería</h2>
                     </div>
-                    <p class="text-sm text-sisek-silver mt-1">Calcula el tiempo estimado antes de que la batería pierda la fuerza de arranque (<span class="font-mono text-xs text-white">Cranking Power</span>).</p>
+                    <p class="text-sm text-sisek-silver mt-1">Calcula el tiempo estimado antes de que la batería pierda
+                        la fuerza de arranque (<span class="font-mono text-xs text-white">Cranking Power</span>).</p>
                 </div>
                 <div class="inline-flex rounded-lg bg-surface-inset p-1 border border-surface-border self-start">
-                    <button id="btnStandby" onclick="setMode('standby')" class="px-3.5 py-1.5 rounded-md text-xs font-mono font-medium transition-all bg-surface-card text-white border border-surface-border shadow-sm">
+                    <button id="btnStandby" onclick="setMode('standby')"
+                        class="px-3.5 py-1.5 rounded-md text-xs font-mono font-medium transition-all bg-surface-card text-white border border-surface-border shadow-sm">
                         Modo Reposo (Normal)
                     </button>
-                    <button id="btnLock" onclick="setMode('locked')" class="px-3.5 py-1.5 rounded-md text-xs font-mono font-medium transition-all text-sisek-silver hover:text-white">
+                    <button id="btnLock" onclick="setMode('locked')"
+                        class="px-3.5 py-1.5 rounded-md text-xs font-mono font-medium transition-all text-sisek-silver hover:text-white">
                         Modo Bloqueo (Relé)
                     </button>
                 </div>
@@ -202,23 +241,28 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 <!-- Selector de Tipo de Batería -->
                 <div class="lg:col-span-4 space-y-4">
-                    <label class="block text-xs font-mono text-sisek-steel uppercase tracking-wider">Selecciona la Capacidad de tu Batería</label>
+                    <label class="block text-xs font-mono text-sisek-steel uppercase tracking-wider">Selecciona la
+                        Capacidad de tu Batería</label>
                     <div class="grid grid-cols-3 gap-2">
-                        <button onclick="setBattery(5)" id="btnBat5" class="p-3 rounded-lg border text-center transition-all bg-surface-card border-sisek-cyan text-white">
+                        <button onclick="setBattery(5)" id="btnBat5"
+                            class="p-3 rounded-lg border text-center transition-all bg-surface-card border-sisek-cyan text-white">
                             <span class="block font-mono text-lg font-bold">5 Ah</span>
                             <span class="block text-[11px] text-sisek-silver">Scooter / 125cc</span>
                         </button>
-                        <button onclick="setBattery(7)" id="btnBat7" class="p-3 rounded-lg border text-center transition-all bg-surface-inset border-surface-border text-sisek-silver hover:text-white">
+                        <button onclick="setBattery(7)" id="btnBat7"
+                            class="p-3 rounded-lg border text-center transition-all bg-surface-inset border-surface-border text-sisek-silver hover:text-white">
                             <span class="block font-mono text-lg font-bold">7 Ah</span>
                             <span class="block text-[11px] text-sisek-silver">Estándar 250cc</span>
                         </button>
-                        <button onclick="setBattery(10)" id="btnBat10" class="p-3 rounded-lg border text-center transition-all bg-surface-inset border-surface-border text-sisek-silver hover:text-white">
+                        <button onclick="setBattery(10)" id="btnBat10"
+                            class="p-3 rounded-lg border text-center transition-all bg-surface-inset border-surface-border text-sisek-silver hover:text-white">
                             <span class="block font-mono text-lg font-bold">10 Ah</span>
                             <span class="block text-[11px] text-sisek-silver">Touring / 400cc+</span>
                         </button>
                     </div>
                     <p class="text-xs text-sisek-steel font-mono">
-                        * Cálculo estimado con un margen de descarga crítica del 45% (umbral donde el motor de arranque ya no gira).
+                        * Cálculo estimado con un margen de descarga crítica del 45% (umbral donde el motor de arranque
+                        ya no gira).
                     </p>
                 </div>
 
@@ -227,20 +271,25 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
                         <div class="border-b sm:border-b-0 sm:border-r border-surface-border pb-4 sm:pb-0">
                             <span class="text-xs font-mono text-sisek-silver block mb-1">Drenaje de Corriente</span>
-                            <span id="displayDrain" class="font-mono text-3xl font-bold text-sisek-cyan">15 <span class="text-sm text-sisek-steel">mA</span></span>
-                            <span id="displayDrainSub" class="text-[11px] text-sisek-steel block mt-1">Receptor GNSS + 4G standby</span>
+                            <span id="displayDrain" class="font-mono text-3xl font-bold text-sisek-cyan">15 <span
+                                    class="text-sm text-sisek-steel">mA</span></span>
+                            <span id="displayDrainSub" class="text-[11px] text-sisek-steel block mt-1">Receptor GNSS +
+                                4G standby</span>
                         </div>
                         <div class="border-b sm:border-b-0 sm:border-r border-surface-border pb-4 sm:pb-0">
                             <span class="text-xs font-mono text-sisek-silver block mb-1">Autonomía Segura</span>
-                            <span id="displayDays" class="font-mono text-3xl font-bold text-white">6.2 <span class="text-sm text-sisek-steel">Días</span></span>
+                            <span id="displayDays" class="font-mono text-3xl font-bold text-white">6.2 <span
+                                    class="text-sm text-sisek-steel">Días</span></span>
                             <span class="text-[11px] text-sisek-steel block mt-1">Antes de perder arranque</span>
                         </div>
                         <div>
                             <span class="text-xs font-mono text-sisek-silver block mb-1">Estado de Seguridad</span>
-                            <span id="displayBadge" class="inline-block px-2.5 py-1 rounded text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mt-1">
+                            <span id="displayBadge"
+                                class="inline-block px-2.5 py-1 rounded text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mt-1">
                                 ÓPTIMO / NORMAL
                             </span>
-                            <span id="displayStatusDesc" class="text-[11px] text-sisek-steel block mt-1">Requiere encendido cada 3-4 días</span>
+                            <span id="displayStatusDesc" class="text-[11px] text-sisek-steel block mt-1">Requiere
+                                encendido cada 3-4 días</span>
                         </div>
                     </div>
 
@@ -250,8 +299,11 @@
                             <span class="text-sisek-silver">Curva de retención de energía</span>
                             <span id="barPercent" class="text-sisek-cyan font-bold">100% Carga Plena</span>
                         </div>
-                        <div class="w-full bg-surface-inset h-2 rounded-full overflow-hidden p-0.5 border border-surface-border">
-                            <div id="statusProgressBar" class="h-full rounded-full transition-all duration-500 bg-sisek-cyan" style="width: 100%"></div>
+                        <div
+                            class="w-full bg-surface-inset h-2 rounded-full overflow-hidden p-0.5 border border-surface-border">
+                            <div id="statusProgressBar"
+                                class="h-full rounded-full transition-all duration-500 bg-sisek-cyan"
+                                style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -264,16 +316,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 
             <!-- BLOQUE 1: LA RESERVA DE ENERGÍA (CAPACIDAD VOLUMÉTRICA) -->
-            <article class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-surface-borderLight transition-all flex flex-col justify-between group">
+            <article
+                class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-surface-borderLight transition-all flex flex-col justify-between group">
                 <div>
                     <!-- Encabezado técnico con código -->
                     <div class="flex items-center justify-between mb-5">
-                        <span class="text-[11px] font-mono tracking-widest text-sisek-steel bg-surface-inset px-2.5 py-1 rounded border border-surface-border">
+                        <span
+                            class="text-[11px] font-mono tracking-widest text-sisek-steel bg-surface-inset px-2.5 py-1 rounded border border-surface-border">
                             MOD-01 // CAPACIDAD FÍSICA
                         </span>
-                        <div class="w-8 h-8 rounded bg-surface-inset border border-surface-border flex items-center justify-center text-sisek-cyan">
+                        <div
+                            class="w-8 h-8 rounded bg-surface-inset border border-surface-border flex items-center justify-center text-sisek-cyan">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                         </div>
                     </div>
@@ -282,11 +338,14 @@
                         La Reserva de Energía: Escala Real
                     </h3>
                     <p class="text-sisek-silver text-sm leading-relaxed mb-6">
-                        A diferencia de un vehículo comercial o camioneta, la batería de una motocicleta está restringida por peso y dimensiones de chasis. Es un acumulador con entre <strong class="text-white">7 y 10 veces menos reserva</strong> que la de un automóvil.
+                        A diferencia de un vehículo comercial o camioneta, la batería de una motocicleta está
+                        restringida por peso y dimensiones de chasis. Es un acumulador con entre <strong
+                            class="text-white">7 y 10 veces menos reserva</strong> que la de un automóvil.
                     </p>
 
                     <!-- Comparador Visual Técnico Automotriz -->
-                    <div class="bg-surface-inset border border-surface-border rounded-lg p-4 space-y-4 font-mono text-xs">
+                    <div
+                        class="bg-surface-inset border border-surface-border rounded-lg p-4 space-y-4 font-mono text-xs">
                         <!-- Auto -->
                         <div>
                             <div class="flex justify-between items-center mb-1.5">
@@ -296,10 +355,12 @@
                                 </span>
                                 <span class="text-white font-bold">55 Ah</span>
                             </div>
-                            <div class="w-full bg-surface-base h-2.5 rounded border border-surface-border overflow-hidden">
+                            <div
+                                class="w-full bg-surface-base h-2.5 rounded border border-surface-border overflow-hidden">
                                 <div class="bg-gray-500 h-full rounded" style="width: 100%"></div>
                             </div>
-                            <span class="text-[10px] text-sisek-steel mt-0.5 block">Respaldo masivo: tolera semanas sin recarga.</span>
+                            <span class="text-[10px] text-sisek-steel mt-0.5 block">Respaldo masivo: tolera semanas sin
+                                recarga.</span>
                         </div>
 
                         <!-- Moto -->
@@ -311,31 +372,38 @@
                                 </span>
                                 <span class="text-sisek-cyan font-bold">6 Ah</span>
                             </div>
-                            <div class="w-full bg-surface-base h-2.5 rounded border border-surface-border overflow-hidden">
+                            <div
+                                class="w-full bg-surface-base h-2.5 rounded border border-surface-border overflow-hidden">
                                 <div class="bg-sisek-cyan h-full rounded" style="width: 12%"></div>
                             </div>
-                            <span class="text-[10px] text-sisek-cyan/80 mt-0.5 block">Capacidad reducida: cualquier consumo continuo es sensible.</span>
+                            <span class="text-[10px] text-sisek-cyan/80 mt-0.5 block">Capacidad reducida: cualquier
+                                consumo continuo es sensible.</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
+                <div
+                    class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
                     <span>RELACIÓN DE ESCALA: 1 : 9.1</span>
                     <span class="text-sisek-silver">Tensión nominal: 12.6V</span>
                 </div>
             </article>
 
             <!-- BLOQUE 2: MODO REPOSO (CONSUMO BASAL TELEMETRÍA) -->
-            <article class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-surface-borderLight transition-all flex flex-col justify-between group">
+            <article
+                class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-surface-borderLight transition-all flex flex-col justify-between group">
                 <div>
                     <!-- Encabezado técnico con código -->
                     <div class="flex items-center justify-between mb-5">
-                        <span class="text-[11px] font-mono tracking-widest text-sisek-steel bg-surface-inset px-2.5 py-1 rounded border border-surface-border">
+                        <span
+                            class="text-[11px] font-mono tracking-widest text-sisek-steel bg-surface-inset px-2.5 py-1 rounded border border-surface-border">
                             MOD-02 // DRENAJE BASAL
                         </span>
-                        <div class="w-8 h-8 rounded bg-surface-inset border border-surface-border flex items-center justify-center text-sisek-cyan">
+                        <div
+                            class="w-8 h-8 rounded bg-surface-inset border border-surface-border flex items-center justify-center text-sisek-cyan">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                             </svg>
                         </div>
                     </div>
@@ -344,7 +412,9 @@
                         El "Modo Reposo" no significa apagado
                     </h3>
                     <p class="text-sisek-silver text-sm leading-relaxed mb-6">
-                        Para recibir solicitudes desde la plataforma de SISEK (posicionamiento, geocercas, alertas de choque o vibración), el módem celular y el receptor satelital permanecen en estado <strong class="text-white">vigía activo</strong>, consumiendo corriente continuamente.
+                        Para recibir solicitudes desde la plataforma de SISEK (posicionamiento, geocercas, alertas de
+                        choque o vibración), el módem celular y el receptor satelital permanecen en estado <strong
+                            class="text-white">vigía activo</strong>, consumiendo corriente continuamente.
                     </p>
 
                     <!-- Telemetry Data Box -->
@@ -352,43 +422,53 @@
                         <div class="grid grid-cols-2 gap-4 text-xs font-mono">
                             <div class="border-r border-surface-border pr-2">
                                 <span class="text-sisek-steel block uppercase">Consumo Continuo</span>
-                                <span class="text-2xl font-bold text-sisek-cyan mt-1 block">12 - 18 <span class="text-xs text-sisek-steel">mA</span></span>
+                                <span class="text-2xl font-bold text-sisek-cyan mt-1 block">12 - 18 <span
+                                        class="text-xs text-sisek-steel">mA</span></span>
                                 <span class="text-[11px] text-sisek-silver block mt-1">Conexión a red móvil LTE-M</span>
                             </div>
                             <div class="pl-2">
                                 <span class="text-sisek-steel block uppercase">En 7 días sin uso</span>
                                 <span class="text-2xl font-bold text-amber-400 mt-1 block">~35 - 45%</span>
-                                <span class="text-[11px] text-sisek-silver block mt-1">Pérdida neta de capacidad útil</span>
+                                <span class="text-[11px] text-sisek-silver block mt-1">Pérdida neta de capacidad
+                                    útil</span>
                             </div>
                         </div>
 
-                        <div class="mt-4 pt-3 border-t border-surface-border flex items-center space-x-2 text-[11px] font-mono text-sisek-steel">
+                        <div
+                            class="mt-4 pt-3 border-t border-surface-border flex items-center space-x-2 text-[11px] font-mono text-sisek-steel">
                             <span class="w-1.5 h-1.5 rounded-full bg-sisek-cyan"></span>
                             <span>Acelerómetro 3D de 3 ejes monitoreando movimientos</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
+                <div
+                    class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
                     <span>ESTADO: VIGILANCIA REMOTA</span>
                     <span class="text-sisek-silver">Red 4G/IoT activa</span>
                 </div>
             </article>
 
             <!-- BLOQUE 3: BLOQUEO DE MOTOR (EL IMPACTO CRÍTICO DEL RELÉ) -->
-            <article class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-sisek-orange/40 transition-all flex flex-col justify-between group relative overflow-hidden">
+            <article
+                class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-sisek-orange/40 transition-all flex flex-col justify-between group relative overflow-hidden">
                 <!-- Marca de advertencia sutil en esquina -->
-                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-sisek-orange/10 via-transparent to-transparent pointer-events-none"></div>
+                <div
+                    class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-sisek-orange/10 via-transparent to-transparent pointer-events-none">
+                </div>
 
                 <div>
                     <!-- Encabezado técnico con código -->
                     <div class="flex items-center justify-between mb-5">
-                        <span class="text-[11px] font-mono tracking-widest text-sisek-orange bg-sisek-orange/10 px-2.5 py-1 rounded border border-sisek-orange/30">
+                        <span
+                            class="text-[11px] font-mono tracking-widest text-sisek-orange bg-sisek-orange/10 px-2.5 py-1 rounded border border-sisek-orange/30">
                             MOD-03 // ALERTA: CONSUMO CRÍTICO
                         </span>
-                        <div class="w-8 h-8 rounded bg-surface-inset border border-sisek-orange/30 flex items-center justify-center text-sisek-orange">
+                        <div
+                            class="w-8 h-8 rounded bg-surface-inset border border-sisek-orange/30 flex items-center justify-center text-sisek-orange">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
                         </div>
                     </div>
@@ -397,7 +477,9 @@
                         El Bloqueo de Motor (Relé Energizado)
                     </h3>
                     <p class="text-sisek-silver text-sm leading-relaxed mb-6">
-                        Al enviar el comando de corte desde la App, se energiza la bobina del relé electromecánico para abrir el circuito de ignición. Este electroimán demanda corriente constante, <strong class="text-sisek-orange">multiplicando el consumo hasta 15 veces</strong>.
+                        Al enviar el comando de corte desde la App, se energiza la bobina del relé electromecánico para
+                        abrir el circuito de ignición. Este electroimán demanda corriente constante, <strong
+                            class="text-sisek-orange">multiplicando el consumo hasta 15 veces</strong>.
                     </p>
 
                     <!-- Caja de Datos de Peligro -->
@@ -405,40 +487,51 @@
                         <div class="flex items-center justify-between font-mono">
                             <div>
                                 <span class="text-[11px] text-sisek-steel uppercase block">Drenaje con Bloqueo</span>
-                                <span class="text-2xl md:text-3xl font-bold text-sisek-orange">150 - 200 <span class="text-xs text-sisek-steel">mA</span></span>
+                                <span class="text-2xl md:text-3xl font-bold text-sisek-orange">150 - 200 <span
+                                        class="text-xs text-sisek-steel">mA</span></span>
                             </div>
                             <div class="text-right">
-                                <span class="text-[11px] text-red-400 uppercase font-semibold block">Vaciado Acelerado</span>
+                                <span class="text-[11px] text-red-400 uppercase font-semibold block">Vaciado
+                                    Acelerado</span>
                                 <span class="text-xl md:text-2xl font-bold text-white">&lt; 36 Horas</span>
                             </div>
                         </div>
 
-                        <div class="mt-3 pt-3 border-t border-surface-border text-xs text-sisek-silver flex items-start space-x-2">
-                            <svg class="w-4 h-4 text-sisek-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <div
+                            class="mt-3 pt-3 border-t border-surface-border text-xs text-sisek-silver flex items-start space-x-2">
+                            <svg class="w-4 h-4 text-sisek-orange shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span>Dejar la moto bloqueada durante un fin de semana agota la batería a cero absoluto.</span>
+                            <span>Dejar la moto bloqueada durante un fin de semana agota la batería a cero
+                                absoluto.</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
+                <div
+                    class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
                     <span>CIRCUITO: BOBINA 85-86 ACTIVA</span>
                     <span class="text-sisek-orange font-semibold">CONSUMO SEVERO</span>
                 </div>
             </article>
 
             <!-- BLOQUE 4: EL DAÑO QUÍMICO (SULFATACIÓN Y BATERÍA LIGADA) -->
-            <article class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-surface-borderLight transition-all flex flex-col justify-between group">
+            <article
+                class="bg-surface-card border border-surface-border rounded-xl p-7 hover:border-surface-borderLight transition-all flex flex-col justify-between group">
                 <div>
                     <!-- Encabezado técnico con código -->
                     <div class="flex items-center justify-between mb-5">
-                        <span class="text-[11px] font-mono tracking-widest text-sisek-steel bg-surface-inset px-2.5 py-1 rounded border border-surface-border">
+                        <span
+                            class="text-[11px] font-mono tracking-widest text-sisek-steel bg-surface-inset px-2.5 py-1 rounded border border-surface-border">
                             MOD-04 // FENÓMENO ELECTROQUÍMICO
                         </span>
-                        <div class="w-8 h-8 rounded bg-surface-inset border border-surface-border flex items-center justify-center text-red-400">
+                        <div
+                            class="w-8 h-8 rounded bg-surface-inset border border-surface-border flex items-center justify-center text-red-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                             </svg>
                         </div>
                     </div>
@@ -447,11 +540,15 @@
                         El Daño Irreversible: Batería "Ligada"
                     </h3>
                     <p class="text-sisek-silver text-sm leading-relaxed mb-6">
-                        Cuando el voltaje cae por debajo de <span class="font-mono text-white text-xs bg-surface-inset px-1.5 py-0.5 rounded border border-surface-border">10.5V</span> por descarga profunda, el ácido sulfúrico reacciona formando cristales densos de sulfato de plomo en las placas internas.
+                        Cuando el voltaje cae por debajo de <span
+                            class="font-mono text-white text-xs bg-surface-inset px-1.5 py-0.5 rounded border border-surface-border">10.5V</span>
+                        por descarga profunda, el ácido sulfúrico reacciona formando cristales densos de sulfato de
+                        plomo en las placas internas.
                     </p>
 
                     <!-- Gráfico Técnico de la Falla -->
-                    <div class="bg-surface-inset border border-surface-border rounded-lg p-4 space-y-3 font-mono text-xs">
+                    <div
+                        class="bg-surface-inset border border-surface-border rounded-lg p-4 space-y-3 font-mono text-xs">
                         <div class="flex items-center justify-between border-b border-surface-border pb-2">
                             <span class="text-sisek-silver">Fase 1: Tensión &gt; 12.4V</span>
                             <span class="text-emerald-400 font-semibold">Saludable / Activa</span>
@@ -467,11 +564,13 @@
                     </div>
 
                     <p class="mt-4 text-xs text-sisek-steel">
-                        Una batería sulfatada no recupera su retención de carga con "puentes" de arranque ni cargadores básicos. Requiere reemplazo definitivo.
+                        Una batería sulfatada no recupera su retención de carga con "puentes" de arranque ni cargadores
+                        básicos. Requiere reemplazo definitivo.
                     </p>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
+                <div
+                    class="mt-6 pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-sisek-steel">
                     <span>DIAGNÓSTICO: ROTURA QUÍMICA</span>
                     <span class="text-red-400">NO REVERSIBLE</span>
                 </div>
@@ -484,14 +583,17 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div class="bg-surface-card border border-surface-border rounded-2xl p-6 sm:p-10 relative">
             <!-- Etiqueta técnica superior -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-border pb-6 mb-8">
+            <div
+                class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-border pb-6 mb-8">
                 <div>
-                    <span class="text-xs font-mono text-sisek-cyan uppercase tracking-widest block mb-1">Manual Operativo SISEK</span>
+                    <span class="text-xs font-mono text-sisek-cyan uppercase tracking-widest block mb-1">Manual
+                        Operativo SISEK</span>
                     <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white tracking-tight">
                         Protocolo de Mantenimiento Preventivo
                     </h2>
                 </div>
-                <div class="text-xs font-mono text-sisek-steel bg-surface-inset px-3 py-1.5 rounded border border-surface-border self-start">
+                <div
+                    class="text-xs font-mono text-sisek-steel bg-surface-inset px-3 py-1.5 rounded border border-surface-border self-start">
                     ESTÁNDAR: ISO-TLM-MOTOS
                 </div>
             </div>
@@ -503,17 +605,25 @@
                 <div class="bg-surface-inset border border-surface-border rounded-xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center space-x-3 mb-4">
-                            <span class="font-mono text-xs font-bold w-7 h-7 rounded bg-surface-card border border-surface-border flex items-center justify-center text-sisek-cyan">
+                            <span
+                                class="font-mono text-xs font-bold w-7 h-7 rounded bg-surface-card border border-surface-border flex items-center justify-center text-sisek-cyan">
                                 01
                             </span>
                             <h4 class="font-heading text-lg font-bold text-white">Ciclo de Regeneración de Carga</h4>
                         </div>
                         <p class="text-sisek-silver text-sm leading-relaxed">
-                            Si no utilizas tu motocicleta a diario, enciéndela durante <strong class="text-white">10 a 15 minutos cada 3 o 4 días</strong> continuos. El alternador o estator suministrará <span class="font-mono text-xs text-sisek-cyan">13.8V - 14.4V</span> restaurando los miliamperios consumidos por el GPS en reposo.
+                            Si no utilizas tu motocicleta a diario, enciéndela durante <strong class="text-white">10 a
+                                15 minutos cada 3 o 4 días</strong> continuos. El alternador o estator suministrará
+                            <span class="font-mono text-xs text-sisek-cyan">13.8V - 14.4V</span> restaurando los
+                            miliamperios consumidos por el GPS en reposo.
                         </p>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-surface-border flex items-center text-xs font-mono text-emerald-400">
-                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <div
+                        class="mt-4 pt-3 border-t border-surface-border flex items-center text-xs font-mono text-emerald-400">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
                         Prolonga la vida del acumulador hasta 3+ años
                     </div>
                 </div>
@@ -522,17 +632,27 @@
                 <div class="bg-surface-inset border border-surface-border rounded-xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center space-x-3 mb-4">
-                            <span class="font-mono text-xs font-bold w-7 h-7 rounded bg-surface-card border border-surface-border flex items-center justify-center text-sisek-orange">
+                            <span
+                                class="font-mono text-xs font-bold w-7 h-7 rounded bg-surface-card border border-surface-border flex items-center justify-center text-sisek-orange">
                                 02
                             </span>
-                            <h4 class="font-heading text-lg font-bold text-white">Corte de Motor: Exclusivo Emergencias</h4>
+                            <h4 class="font-heading text-lg font-bold text-white">Corte de Motor: Exclusivo Emergencias
+                            </h4>
                         </div>
                         <p class="text-sisek-silver text-sm leading-relaxed">
-                            El comando de apagado desde la plataforma SISEK es un mecanismo de <strong class="text-sisek-orange">recuperación ante asalto o robo consumado</strong>. Nunca lo emplees como seguro antirrobo de estacionamiento habitual mientras estás en casa, oficina o por la noche.
+                            El comando de apagado desde la plataforma SISEK es un mecanismo de <strong
+                                class="text-sisek-orange">recuperación ante asalto o robo consumado</strong>. Nunca lo
+                            emplees como seguro antirrobo de estacionamiento habitual mientras estás en casa, oficina o
+                            por la noche.
                         </p>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-surface-border flex items-center text-xs font-mono text-sisek-orange">
-                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <div
+                        class="mt-4 pt-3 border-t border-surface-border flex items-center text-xs font-mono text-sisek-orange">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                            </path>
+                        </svg>
                         Evita el drenaje continuo de 180 mA
                     </div>
                 </div>
@@ -540,19 +660,25 @@
             </div>
 
             <!-- Banner Adicional: Mantenedores de Batería -->
-            <div class="mt-6 bg-surface-base border border-surface-border rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div
+                class="mt-6 bg-surface-base border border-surface-border rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded bg-surface-card border border-surface-border flex items-center justify-center text-sisek-silver shrink-0">
+                    <div
+                        class="w-8 h-8 rounded bg-surface-card border border-surface-border flex items-center justify-center text-sisek-silver shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
                     <div>
-                        <h5 class="text-sm font-bold text-white">¿Saldrás de viaje o la moto estará parada más de 10 días?</h5>
-                        <p class="text-xs text-sisek-silver">Recomendamos conectar un mantenedor de flote inteligente (Tender/Trickle charger) o desconectar el borne negativo.</p>
+                        <h5 class="text-sm font-bold text-white">¿Saldrás de viaje o la moto estará parada más de 10
+                            días?</h5>
+                        <p class="text-xs text-sisek-silver">Recomendamos conectar un mantenedor de flote inteligente
+                            (Tender/Trickle charger) o desconectar el borne negativo.</p>
                     </div>
                 </div>
-                <span class="text-xs font-mono text-sisek-cyan bg-surface-card px-3 py-1.5 rounded border border-surface-border whitespace-nowrap">
+                <span
+                    class="text-xs font-mono text-sisek-cyan bg-surface-card px-3 py-1.5 rounded border border-surface-border whitespace-nowrap">
                     TIP DE TALLER SISEK
                 </span>
             </div>
@@ -563,12 +689,13 @@
     <footer class="border-t border-surface-border bg-surface-subtle py-10 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-tRAZBUN-QenhG7BcMLqyesKBRn7eKanId_5q7jLBEEtU-4c3fWV_J-LQ&s=10" 
-                     alt="Logo SISEK GPS" 
-                     class="h-8 w-8 object-contain rounded-md border border-surface-border bg-surface-card p-1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-tRAZBUN-QenhG7BcMLqyesKBRn7eKanId_5q7jLBEEtU-4c3fWV_J-LQ&s=10"
+                    alt="Logo SISEK GPS"
+                    class="h-8 w-8 object-contain rounded-md border border-surface-border bg-surface-card p-1">
                 <div>
                     <span class="font-heading font-bold text-sm tracking-wide text-white">SISEK GPS</span>
-                    <span class="text-xs font-mono text-sisek-steel block">Sistemas de Telemetría &amp; Rastreo Satelital</span>
+                    <span class="text-xs font-mono text-sisek-steel block">Sistemas de Telemetría &amp; Rastreo
+                        Satelital</span>
                 </div>
             </div>
 
@@ -647,7 +774,7 @@
                 displayDrain.innerHTML = `180 <span class="text-sm text-sisek-steel">mA</span>`;
                 displayDrain.className = 'font-mono text-3xl font-bold text-sisek-orange';
                 displayDrainSub.innerText = 'Bobina del relé energizada constante';
-                
+
                 const hoursRounded = Math.round(totalHours);
                 displayDays.innerHTML = `${hoursRounded} <span class="text-sm text-sisek-steel">Horas (~${totalDays} d)</span>`;
                 displayDays.className = 'font-mono text-3xl font-bold text-sisek-orange';
@@ -667,4 +794,5 @@
         calculateAutonomy();
     </script>
 </body>
+
 </html>
